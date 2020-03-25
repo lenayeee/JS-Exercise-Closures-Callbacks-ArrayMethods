@@ -182,19 +182,17 @@ function lowerCaseStrings(strings) {
  * [2] Invoking `isItAnApple` with `['a', 'b', 'c' ]` will return `[ false, false, false ]`.
 */
 function isItAnApple(strings) {
-  const newNewArray = [];
-    if (strings.map(function(item){
-      return newNewArray.push(item);
-    }) === strings.length) {
-    return true;
-    } else {
-    return false;
+  const newNewArray = strings.map(function(item){
+    if (item === 'apple'){
+      return true
+    } else{
+      return false
     }
-
+  }) 
+  return newNewArray
 }
 
 
-// *********COME BACK HERE
 
 /**
  * ### Challenge `removeApple`
@@ -208,14 +206,14 @@ function isItAnApple(strings) {
  *This function is case sensitive and, for example, should not remove 'Apple' or 'APPLE'
  * 
  * Examples of usage of this function:
- * [1] Invoking `removeApple` with `[ 'orange', 'apple', 'banana', 'apples', 'apple', 'mango' ]` will return `[ 'orange', 'banana', 'apples', 'mango' ]`.
+ * [1] Invoking `removeApple` with `[ 'orange', 'apple', 'banana', 'apples', 'apple', 'mango' ]` 
+ * will return `[ 'orange', 'banana', 'apples', 'mango' ]`.
  * 
  * [2] Invoking `removeApple` with `['a', 'b', 'c' ]` will return `[ 'a', 'b', 'c' ]`.
 */
 function removeApple(strings) {
-    strings.filter(function(notApple))
-    (strings !== 'apple')
-
+    strings.filter(notApple => notApple !== 'apple'
+    );
 }
 
 /**
