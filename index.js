@@ -67,7 +67,7 @@ function processLength(list, callback) {
  * should return 'barbar'.
 */
 function processLastItem(stringList, callback) {
-   return callback(stringList[stringList.length[-1]])
+   return callback(stringList[stringList.length-1])
 }
 
 /**
@@ -88,8 +88,8 @@ function processLastItem(stringList, callback) {
  * [2] Invoking `processSum` passing `-5`, '-1', and `(num) => num + 1000`,
  * should return 994.
 */
-function processSum(/* CODE HERE */) {
-  /* CODE HERE */
+function processSum(num1,num2,callback) {
+  return callback(num1+num2);
 }
 
 /**
@@ -110,8 +110,8 @@ function processSum(/* CODE HERE */) {
  * [2] Invoking `processProduct` passing 25 and 0 and `(num) => num + 1000`,
  * should return 1000.
 */
-function processProduct(/* CODE HERE */) {
-  /* CODE HERE */
+function processProduct(num1, num2, callback) {
+  return callback(num1 * num2);
 }
 
 /**
@@ -132,8 +132,8 @@ function processProduct(/* CODE HERE */) {
  * [2] Invoking `processDuplicateFree` passing `[1,1,2,2,3]` and `(arr) => arr.length`,
  * should return 3.
 */
-function processDuplicateFree(/* CODE HERE ONLY AFTER COMPLETING ALL OTHER TASKS */) {
-  /* CODE HERE ONLY AFTER COMPLETING ALL OTHER TASKS */
+function processDuplicateFree(list, callback) {
+  return callback()
 }
 
 /////////////// HIGHER-ORDER ARRAY METHODS ///////////////
@@ -155,8 +155,12 @@ function processDuplicateFree(/* CODE HERE ONLY AFTER COMPLETING ALL OTHER TASKS
  * 
  * [2] Invoking `lowerCaseStrings` with `['a', 'b', 'c' ]` will return `[ 'a', 'b', 'c' ]`.
 */
-function lowerCaseStrings(/* code here */) {
-  /* code here */
+function lowerCaseStrings(strings) {
+    const newArray = [];
+      strings.forEach(function(item){ 
+      return newArray.push(item.toLowerCase()); 
+      })
+    return newArray;
 }
 
 /**
@@ -166,17 +170,31 @@ function lowerCaseStrings(/* code here */) {
  * Implement this function using map().
  * 
  * @param strings an array of strings.
- * @returns an array of equal length to `strings` containing `true` if the corresponding entry in the `strings` is 'apple' and `false` if it is anything else.
+ * @returns an array of equal length to `strings` containing `true` 
+ * if the corresponding entry in the `strings` is 'apple' and `false` 
+ * if it is anything else.
  * 
  * 
  * Examples of usage of this function:
- * [1] Invoking `isItAnApple` with `[ 'orange', 'apple', 'banana', 'apples', 'apple', 'mango' ]` will return `[ false, true, false, false, true, false ]`.
+ * [1] Invoking `isItAnApple` with `[ 'orange', 'apple', 'banana', 'apples', 'apple', 'mango' ]`
+ *  will return `[ false, true, false, false, true, false ]`.
  * 
  * [2] Invoking `isItAnApple` with `['a', 'b', 'c' ]` will return `[ false, false, false ]`.
 */
-function isItAnApple(/* code here */) {
-  /* code here */
+function isItAnApple(strings) {
+  const newNewArray = [];
+    if (strings.map(function(item){
+      return newNewArray.push(item);
+    }) === strings.length) {
+    return true;
+    } else {
+    return false;
+    }
+
 }
+
+
+// *********COME BACK HERE
 
 /**
  * ### Challenge `removeApple`
@@ -194,8 +212,10 @@ function isItAnApple(/* code here */) {
  * 
  * [2] Invoking `removeApple` with `['a', 'b', 'c' ]` will return `[ 'a', 'b', 'c' ]`.
 */
-function removeApple(/* code here */) {
-  /* code here */
+function removeApple(strings) {
+    strings.filter(function(notApple))
+    (strings !== 'apple')
+
 }
 
 /**
@@ -232,8 +252,10 @@ function stringSmash(/* code here */) {
  * @returns an array with all the runners' full names in the following format: "Smith, John".
  * The full names appear in the array in the same order the runners appear in the `runners` array.
 */
-function getFullNames(/* CODE HERE */) {
-  /* CODE HERE */
+function getFullNames(runners) {
+  let newArr = [];
+  runners.forEach(i => newArr.push(`${i.last_name}, ${i.first_name}`));
+  return newArr;
 }
 
 /**
@@ -248,8 +270,8 @@ function getFullNames(/* CODE HERE */) {
  * @returns an array with all the runners' first names in ALL CAPS.
  * The first names appear in the array in the same order the runners appear in the `runners` array.
 */
-function firstNamesAllCaps(/* CODE HERE */) {
-  /* CODE HERE */
+function firstNamesAllCaps(runners) {
+  return runners.map(x => x.first_name.toUpperCase());
 }
 
 /**
@@ -266,8 +288,8 @@ function firstNamesAllCaps(/* CODE HERE */) {
  * @returns an array containing only the runners that use the given `tShirtSize`.
  * The runners in the array appear in the same order they appear in the `runners` array.
 */
-function getRunnersByTShirtSize(/* CODE HERE */) {
-  /* CODE HERE */
+function getRunnersByTShirtSize(runners, tShirtSize) {
+  return runners.filter( x => x.shirt_size == tShirtSize ? x :null)
 }
 
 /**
