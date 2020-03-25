@@ -212,8 +212,9 @@ function isItAnApple(strings) {
  * [2] Invoking `removeApple` with `['a', 'b', 'c' ]` will return `[ 'a', 'b', 'c' ]`.
 */
 function removeApple(strings) {
-    strings.filter(notApple => notApple !== 'apple'
-    );
+  
+  return strings.filter(notApple => notApple !== 'apple'
+  );
 }
 
 /**
@@ -231,8 +232,11 @@ function removeApple(strings) {
  * 
  * [2] Invoking `stringSmash` with `['a', 'b', 'c' ]` will return `abc`.
 */
-function stringSmash(/* code here */) {
-  /* code here */
+function stringSmash(strings) {
+  const reduced = strings.reduce((accumulator, index) => {
+    return accumulator + index
+  })
+  return reduced
 }
 
 // A local community center is holding a fund raising 5k fun run and has invited
