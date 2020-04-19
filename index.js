@@ -48,8 +48,8 @@ function processFirstItem(stringList, callback) {
  * [2] Invoking `processLength` passing `[]` and `(num) => "There are " + num`,
  * should return "There are 0".
 */
-function processLength(/* CODE HERE */) {
-  /* CODE HERE */
+function processLength(list, callback) {
+  return callback(list.length);
 }
 
 /**
@@ -66,8 +66,8 @@ function processLength(/* CODE HERE */) {
  * Invoking `processLastItem` passing `['foo', 'bar']` and `(str) => str + str`,
  * should return 'barbar'.
 */
-function processLastItem(/* CODE HERE */) {
-  /* CODE HERE */
+function processLastItem(stringList, callback) {
+   return callback(stringList[stringList.length-1])
 }
 
 /**
@@ -75,20 +75,21 @@ function processLastItem(/* CODE HERE */) {
  * 
  * @instructions
  * Implement a higher-order function called `processSum`.
- * It takes two arguments:
- * @param numberList array of numbers.
+ * It takes three arguments:
+ * @param num1 a number.
+ * @param num2 a number.
  * @param callback function that takes a number as its argument.
- * @returns the result of invoking `callback` passing the SUM of all elements in `numberList`.
+ * @returns the result of invoking `callback` passing the SUM of `num1` and `num2`.
  * 
  * Examples of usage of this higher-order function:
- * [1] Invoking `processSum` passing `[10, 20, 30]` and `(num) => num + " is a big number!"`,
- * should return "60 is a big number!".
+ * [1] Invoking `processSum` passing `10`, `30` and `(num) => num + " is a big number!"`,
+ * should return "40 is a big number!".
  * 
- * [2] Invoking `processSum` passing `[]` and `(num) => num + 1000`,
- * should return 1000.
+ * [2] Invoking `processSum` passing `-5`, '-1', and `(num) => num + 1000`,
+ * should return 994.
 */
-function processSum(/* CODE HERE */) {
-  /* CODE HERE */
+function processSum(num1,num2,callback) {
+  return callback(num1+num2);
 }
 
 /**
@@ -109,37 +110,12 @@ function processSum(/* CODE HERE */) {
  * [2] Invoking `processProduct` passing 25 and 0 and `(num) => num + 1000`,
  * should return 1000.
 */
-function processProduct(/* CODE HERE */) {
-  /* CODE HERE */
-}
-
-/**
- * ### Challenge `processContains`
- * 
- * @instructions
- * Implement a higher-order function called `processContains`.
- * It takes three arguments:
- * @param item of any kind.
- * @param list array of elements of any kind.
- * @param callback function that takes a boolean as its argument.
- * @returns the result of invoking `callback` passing true if `item` exists in `list`, false otherwise.
- * 
- * Examples of usage of this higher-order function:
- * [1] Invoking `processContains` passing
- * "foo" and `['foo', 'bar']` and `(bool) => bool ? 'nice!' : 'sad'`
- * should return "nice!".
- * 
- * [2] Invoking `processContains` passing
- * "lady gaga" and `['foo', 'bar']` and `(bool) => bool ? 'nice!' : 'sad'`,
- * should return "sad".
-*/
-function processContains(/* CODE HERE */) {
-  /* CODE HERE */
+function processProduct(num1, num2, callback) {
+  return callback(num1 * num2);
 }
 
 /**
  * ### Challenge `processDuplicateFree`
- * THIS IS A STRETCH PROBLEM! ATTEMPT ONLY AFTER COMPLETING ALL NON-STRETCH CHALLENGES!
  * THIS IS A STRETCH PROBLEM! ATTEMPT ONLY AFTER COMPLETING ALL NON-STRETCH CHALLENGES!
  * 
  * @instructions
@@ -156,12 +132,112 @@ function processContains(/* CODE HERE */) {
  * [2] Invoking `processDuplicateFree` passing `[1,1,2,2,3]` and `(arr) => arr.length`,
  * should return 3.
 */
-function processDuplicateFree(/* CODE HERE ONLY AFTER COMPLETING ALL OTHER TASKS */) {
-  /* CODE HERE ONLY AFTER COMPLETING ALL OTHER TASKS */
+function processDuplicateFree(list, callback) {
+  return callback()
 }
 
 /////////////// HIGHER-ORDER ARRAY METHODS ///////////////
 /////////////// HIGHER-ORDER ARRAY METHODS ///////////////
+
+
+/**
+ * ### Challenge `lowerCaseStrings`
+ * 
+ * @instructions
+ * Implement this function using forEach().
+ * 
+ * @param strings an array of strings.
+ * @returns an array of equal length to `strings` containing lowercased versions of each string.
+ * 
+ * 
+ * Examples of usage of this function:
+ * [1] Invoking `lowerCaseStrings` with `[ 'Orange', 'APPLE', 'banana', 'mAnGo']` will return `[ 'orange', 'apple', 'banana', 'mango' ]`.
+ * 
+ * [2] Invoking `lowerCaseStrings` with `['a', 'b', 'c' ]` will return `[ 'a', 'b', 'c' ]`.
+*/
+function lowerCaseStrings(strings) {
+    const newArray = [];
+      strings.forEach(function(item){ 
+      return newArray.push(item.toLowerCase()); 
+      })
+    return newArray;
+}
+
+/**
+ * ### Challenge `isItAnApple`
+ * 
+ * @instructions
+ * Implement this function using map().
+ * 
+ * @param strings an array of strings.
+ * @returns an array of equal length to `strings` containing `true` 
+ * if the corresponding entry in the `strings` is 'apple' and `false` 
+ * if it is anything else.
+ * 
+ * 
+ * Examples of usage of this function:
+ * [1] Invoking `isItAnApple` with `[ 'orange', 'apple', 'banana', 'apples', 'apple', 'mango' ]`
+ *  will return `[ false, true, false, false, true, false ]`.
+ * 
+ * [2] Invoking `isItAnApple` with `['a', 'b', 'c' ]` will return `[ false, false, false ]`.
+*/
+function isItAnApple(strings) {
+  const newNewArray = strings.map(function(item){
+    if (item === 'apple'){
+      return true
+    } else{
+      return false
+    }
+  }) 
+  return newNewArray
+}
+
+
+
+/**
+ * ### Challenge `removeApple`
+ * 
+ * @instructions
+ * Implement this function using filter().
+ * 
+ * @param strings an array of strings.
+ * @returns a similar array, with an entries that are 'apple' removed.
+ * 
+ *This function is case sensitive and, for example, should not remove 'Apple' or 'APPLE'
+ * 
+ * Examples of usage of this function:
+ * [1] Invoking `removeApple` with `[ 'orange', 'apple', 'banana', 'apples', 'apple', 'mango' ]` 
+ * will return `[ 'orange', 'banana', 'apples', 'mango' ]`.
+ * 
+ * [2] Invoking `removeApple` with `['a', 'b', 'c' ]` will return `[ 'a', 'b', 'c' ]`.
+*/
+function removeApple(strings) {
+  
+  return strings.filter(notApple => notApple !== 'apple'
+  );
+}
+
+/**
+ * ### Challenge `stringSmash`
+ * 
+ * @instructions
+ * Implement this function using reduce(). Do NOT use any other array methods.
+ * 
+ * @param strings an array of strings.
+ * @returns a string with all entries in `strings` combined together.
+ * 
+ * 
+ * Examples of usage of this function:
+ * [1] Invoking `stringSmash` with `[ 'orange', 'apple', 'banana', 'apples', 'apple', 'mango' ]` will return 'orangeapplebananaapplesapplemango'.
+ * 
+ * [2] Invoking `stringSmash` with `['a', 'b', 'c' ]` will return `abc`.
+*/
+function stringSmash(strings) {
+  const reduced = strings.reduce((accumulator, index) => {
+    return accumulator + index
+  })
+  return reduced
+}
 
 // A local community center is holding a fund raising 5k fun run and has invited
 // 50 small businesses to make a small donation on their behalf for some much needed
@@ -172,14 +248,16 @@ function processDuplicateFree(/* CODE HERE ONLY AFTER COMPLETING ALL OTHER TASKS
  * ### Challenge `getFullNames`
  * 
  * @instructions
- * Implement this function using forEach().
+ * Implement this function using forEach() or map().
  * 
  * @param runners array of runners like the one inside the /data/runners.js file.
  * @returns an array with all the runners' full names in the following format: "Smith, John".
  * The full names appear in the array in the same order the runners appear in the `runners` array.
 */
-function getFullNames(/* CODE HERE */) {
-  /* CODE HERE */
+function getFullNames(runners) {
+  let newArr = [];
+  runners.forEach(i => newArr.push(`${i.last_name}, ${i.first_name}`));
+  return newArr;
 }
 
 /**
@@ -194,12 +272,13 @@ function getFullNames(/* CODE HERE */) {
  * @returns an array with all the runners' first names in ALL CAPS.
  * The first names appear in the array in the same order the runners appear in the `runners` array.
 */
-function firstNamesAllCaps(/* CODE HERE */) {
-  /* CODE HERE */
+function firstNamesAllCaps(runners) {
+  return runners.map(x => x.first_name.toUpperCase());
 }
 
 /**
  * ### Challenge `getRunnersByTShirtSize`
+ * * THIS IS A STRETCH PROBLEM! ATTEMPT ONLY AFTER COMPLETING ALL NON-STRETCH CHALLENGES!
  * 
  * @instructions
  * The event director needs a way to find the runners that need
@@ -211,12 +290,13 @@ function firstNamesAllCaps(/* CODE HERE */) {
  * @returns an array containing only the runners that use the given `tShirtSize`.
  * The runners in the array appear in the same order they appear in the `runners` array.
 */
-function getRunnersByTShirtSize(/* CODE HERE */) {
-  /* CODE HERE */
+function getRunnersByTShirtSize(runners, tShirtSize) {
+  return runners.filter( x => x.shirt_size == tShirtSize ? x :null)
 }
 
 /**
  * ### Challenge `tallyUpDonations`
+ *  * THIS IS A STRETCH PROBLEM! ATTEMPT ONLY AFTER COMPLETING ALL NON-STRETCH CHALLENGES!
  * 
  * @instructions
  * The donations need to be tallied up and reported for tax purposes.
@@ -236,26 +316,36 @@ function tallyUpDonations(/* CODE HERE */) {
  * ### Challenge `counterMaker`
  * 
  * @instructions
- * Fix this function so a counter produced with it will increment correctly!
- * Usage is as follows:
+ * Study the code for counter1 and counter2. Answer the questions below.
  * 
- * const counter = counterMaker()
- * counter() // should return 0
- * counter() // should return 1
- * counter() // should return 2
- * etc
+ * 1. What is the difference between counter1 and counter2?
+ * 
+ * 2. Which of the two uses a closure? How can you tell?
+ * 
+ * 3. In what scenario would the counter1 code be preferable? In what scenario would counter2 be better? 
+ *
 */
+
+// counter1 code
 function counterMaker() {
-  // BROKEN CODE STARTS
-  const count = 0;
-  function counter() {
-    ++count
+  let count = 0;
+  return function counter() {
+    count++;
   }
-  // BROKEN CODE ENDS
+}
+
+const counter1 = counterMaker();
+
+// counter2 code
+let count = 0;
+
+function counter2() {
+  return count++;
 }
 
 /**
  * ### Challenge `counterMakerWithLimit`
+ * THIS IS A STRETCH PROBLEM! ATTEMPT ONLY AFTER COMPLETING ALL NON-STRETCH CHALLENGES!
  * 
  * @instructions
  * Implement a counter maker that takes a max value for the count.
@@ -291,12 +381,14 @@ if (typeof exports !== 'undefined') {
   if (processLastItem) { module.exports.processLastItem = processLastItem }
   if (processSum) { module.exports.processSum = processSum }
   if (processProduct) { module.exports.processProduct = processProduct }
-  if (processContains) { module.exports.processContains = processContains }
   if (processDuplicateFree) { module.exports.processDuplicateFree = processDuplicateFree }
+  if (lowerCaseStrings ) { module.exports.lowerCaseStrings = lowerCaseStrings}
+  if (isItAnApple) { module.exports.isItAnApple = isItAnApple }
+  if (removeApple) { module.exports.removeApple = removeApple }
+  if (stringSmash) { module.exports.stringSmash = stringSmash }
   if (getFullNames) { module.exports.getFullNames = getFullNames }
   if (firstNamesAllCaps) { module.exports.firstNamesAllCaps = firstNamesAllCaps }
   if (getRunnersByTShirtSize) { module.exports.getRunnersByTShirtSize = getRunnersByTShirtSize }
   if (tallyUpDonations) { module.exports.tallyUpDonations = tallyUpDonations }
-  if (counterMaker) { module.exports.counterMaker = counterMaker }
   if (counterMakerWithLimit) { module.exports.counterMakerWithLimit = counterMakerWithLimit }
 }
